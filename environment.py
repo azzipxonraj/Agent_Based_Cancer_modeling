@@ -1,4 +1,5 @@
 import random
+T_GROWTH_CHANCE = 0.3
 
 def create_grid(rows, cols):
     grid = [[0 for _ in range(cols)] for _ in range(rows)]
@@ -40,13 +41,11 @@ def time_loop(t, grid):
             for col_idx, cel in enumerate(row):
                 if cel == 2:
                     neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
-                    new_grid[neighbour_row][neighbour_col] = 2
+                    if new_grid[neighbour_row][neighbour_col] != 2:
+                        new_grid[neighbour_row][neighbour_col] = 2
+                if cel == 1:
+                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
 
-
-
-
-
-
-
-            pass
+                if cel == 0:
+                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
         count += 1
