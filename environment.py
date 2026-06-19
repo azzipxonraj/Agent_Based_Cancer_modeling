@@ -1,5 +1,5 @@
 import random
-T_GROWTH_CHANCE = 0.3
+T_GROWTH_CHANCE = 0.003342937006
 
 def create_grid(rows, cols):
     grid = [[0 for _ in range(cols)] for _ in range(rows)]
@@ -41,11 +41,13 @@ def time_loop(t, grid):
             for col_idx, cel in enumerate(row):
                 if cel == 2:
                     neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
-                    if new_grid[neighbour_row][neighbour_col] != 2:
+                    if new_grid[neighbour_row][neighbour_col] != 2 & random.random() < T_GROWTH_CHANCE:
                         new_grid[neighbour_row][neighbour_col] = 2
                 if cel == 1:
                     neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
+                    if new_grid[neighbour_row][neighbour_col] == 0:
+                        new_grid[neighbour_row][neighbour_col] = 1
 
                 if cel == 0:
-                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
+                        #als deze cell vast zit aan een cell die wel 1 is geeft het x kans om te veranderen naar een levende cell
         count += 1
