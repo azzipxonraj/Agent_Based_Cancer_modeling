@@ -1,8 +1,9 @@
 import random
 T_GROWTH_CHANCE = 0.003342937006
+C_DOUBLING_TIME = 0.2928932188
 
 def create_grid(rows, cols):
-    grid = [[0 for _ in range(cols)] for _ in range(rows)]
+    grid = [[1 for _ in range(cols)] for _ in range(rows)]
     return grid
 
 def copy_grid(grid):
@@ -30,24 +31,23 @@ def get_neighbours(grid, row_idx, col_idx):
 
 
 
-def cell_environment():
-    pass
-
-def time_loop(t, grid):
+def time_loop(t, grid_t):
     count = 0
+    tumor_history = []
     while count <= t:
-        new_grid = copy_grid(grid)
-        for row_idx, row in enumerate(grid):
+        new_grid = copy_grid(grid_t)
+        for row_idx, row in enumerate(grid_t):
             for col_idx, cel in enumerate(row):
                 if cel == 2:
-                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
-                    if new_grid[neighbour_row][neighbour_col] != 2 & random.random() < T_GROWTH_CHANCE:
+                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+                    if new_grid[neighbour_row][neighbour_col] != 2 and random.random() < T_GROWTH_CHANCE:
                         new_grid[neighbour_row][neighbour_col] = 2
                 if cel == 1:
-                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid, row_idx, col_idx))
-                    if new_grid[neighbour_row][neighbour_col] == 0:
+                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+                    if new_grid[neighbour_row][neighbour_col] == 0 and random.random() < C_DOUBLING_TIME:
                         new_grid[neighbour_row][neighbour_col] = 1
-
-                if cel == 0:
-                        #als deze cell vast zit aan een cell die wel 1 is geeft het x kans om te veranderen naar een levende cell
+        tumor_history.append(sum(1 for row in new_grid for cel in row if cel == 2))
         count += 1
+        grid_t = new_grid
+    return new_grid, tumor_history
+
