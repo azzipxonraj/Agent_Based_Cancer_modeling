@@ -1,13 +1,13 @@
 import environment
-from environment import create_grid, place_tumor, time_loop
+from environment import create_grid, place_tumor
+from gui import game_loop
 
 row_size = 50
 col_size = 50
 
 def main():
-    grid = create_grid(row_size, col_size)
-    grid_t = place_tumor(grid, row_size, col_size)
-    print(time_loop(100, grid_t))
+    game_loop(row_size, col_size)
+
 
 if __name__ == '__main__':
     main()

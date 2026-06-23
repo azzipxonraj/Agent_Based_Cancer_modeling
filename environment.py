@@ -30,24 +30,42 @@ def get_neighbours(grid, row_idx, col_idx):
     return neighbours
 
 
+#
+# def time_loop(t, grid_t):
+#     count = 0
+#     tumor_history = []
+#     while count <= t:
+#         new_grid = copy_grid(grid_t)
+#         for row_idx, row in enumerate(grid_t):
+#             for col_idx, cel in enumerate(row):
+#                 if cel == 2:
+#                     neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+#                     if new_grid[neighbour_row][neighbour_col] != 2 and random.random() < T_GROWTH_CHANCE:
+#                         new_grid[neighbour_row][neighbour_col] = 2
+#                 if cel == 1:
+#                     neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+#                     if new_grid[neighbour_row][neighbour_col] == 0 and random.random() < C_DOUBLING_TIME:
+#                         new_grid[neighbour_row][neighbour_col] = 1
+#         tumor_history.append(sum(1 for row in new_grid for cel in row if cel == 2))
+#         count += 1
+#         grid_t = new_grid
+#     return new_grid, tumor_history
 
-def time_loop(t, grid_t):
-    count = 0
-    tumor_history = []
-    while count <= t:
-        new_grid = copy_grid(grid_t)
-        for row_idx, row in enumerate(grid_t):
-            for col_idx, cel in enumerate(row):
-                if cel == 2:
-                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+def do_single_time_step(grid_t):
+    new_grid = copy_grid(grid_t)
+    for row_idx, row in enumerate(grid_t):
+        for col_idx, cel in enumerate(row):
+            if cel == 2:
+                neighbours = get_neighbours(grid_t, row_idx, col_idx)
+                if neighbours:
+                    neighbour_row, neighbour_col = random.choice(neighbours)
                     if new_grid[neighbour_row][neighbour_col] != 2 and random.random() < T_GROWTH_CHANCE:
                         new_grid[neighbour_row][neighbour_col] = 2
-                if cel == 1:
-                    neighbour_row, neighbour_col = random.choice(get_neighbours(grid_t, row_idx, col_idx))
+
+            if cel == 1:
+                neighbours = get_neighbours(grid_t, row_idx, col_idx)
+                if neighbours:
+                    neighbour_row, neighbour_col = random.choice(neighbours)
                     if new_grid[neighbour_row][neighbour_col] == 0 and random.random() < C_DOUBLING_TIME:
                         new_grid[neighbour_row][neighbour_col] = 1
-        tumor_history.append(sum(1 for row in new_grid for cel in row if cel == 2))
-        count += 1
-        grid_t = new_grid
-    return new_grid, tumor_history
-
+    return new_grid
