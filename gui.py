@@ -1,5 +1,8 @@
 import pygame
 import environment
+from output_writer import save_tumor_history
+
+
 
 def init_gui(width=500, height=500):
     pygame.init()
@@ -23,11 +26,13 @@ def gui_window(screen, grid_t, rows, cols):
     frame = pygame.transform.scale(grid_surface, (500, 500))
     screen.blit(frame, frame.get_rect(center=(250, 250)))
 
-def game_loop(rows, cols):
+def game_loop(rows, cols, MAX_STEPS):
     screen = init_gui()
     grid = environment.create_grid(rows, cols)
     grid_t = environment.place_tumor(grid, rows, cols)
     clock = pygame.time.Clock()
+
+    step_counter = 0
 
     running = True
     while running:
@@ -35,7 +40,11 @@ def game_loop(rows, cols):
             if event.type == pygame.QUIT:
                 running = False
 
+        if step_counter >= MAX_STEPS:
+            running = False
+
         grid_t = environment.do_single_time_step(grid_t)
+        step_counter += 1
 
         gui_window(screen, grid_t, rows, cols)
         pygame.display.flip()
@@ -43,3 +52,4 @@ def game_loop(rows, cols):
         clock.tick(30)
 
     pygame.quit()
+    save_tumor_history(environment.TUMOR_HISTORY)

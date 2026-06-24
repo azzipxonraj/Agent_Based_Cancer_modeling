@@ -1,6 +1,7 @@
 import random
 T_GROWTH_CHANCE = 0.003342937006
 C_DOUBLING_TIME = 0.2928932188
+TUMOR_HISTORY = []
 
 def create_grid(rows, cols):
     grid = [[1 for _ in range(cols)] for _ in range(rows)]
@@ -68,4 +69,5 @@ def do_single_time_step(grid_t):
                     neighbour_row, neighbour_col = random.choice(neighbours)
                     if new_grid[neighbour_row][neighbour_col] == 0 and random.random() < C_DOUBLING_TIME:
                         new_grid[neighbour_row][neighbour_col] = 1
+    TUMOR_HISTORY.append(sum(1 for row in new_grid for cel in row if cel == 2))
     return new_grid
