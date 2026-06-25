@@ -1,6 +1,8 @@
 import pygame
 import environment
 from output_writer import save_tumor_history
+from analysis import comparing_plots
+
 
 
 
@@ -26,7 +28,7 @@ def gui_window(screen, grid_t, rows, cols):
     frame = pygame.transform.scale(grid_surface, (500, 500))
     screen.blit(frame, frame.get_rect(center=(250, 250)))
 
-def game_loop(rows, cols, MAX_STEPS):
+def game_loop(rows, cols, max_steps, N_max, b, c):
     screen = init_gui()
     grid = environment.create_grid(rows, cols)
     grid_t = environment.place_tumor(grid, rows, cols)
@@ -40,7 +42,7 @@ def game_loop(rows, cols, MAX_STEPS):
             if event.type == pygame.QUIT:
                 running = False
 
-        if step_counter >= MAX_STEPS:
+        if step_counter >= max_steps:
             running = False
 
         grid_t = environment.do_single_time_step(grid_t)
@@ -53,3 +55,4 @@ def game_loop(rows, cols, MAX_STEPS):
 
     pygame.quit()
     save_tumor_history(environment.TUMOR_HISTORY)
+    comparing_plots(N_max, b, c, max_steps)
