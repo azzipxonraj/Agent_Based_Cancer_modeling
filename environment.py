@@ -1,10 +1,22 @@
 import random
+# Verander dit naar een lever tumor omdat dit meer logisch is met de normale cellen
 T_GROWTH_CHANCE = 0.003342937006
-C_DOUBLING_TIME = 0.2928932188
+C_DOUBLING_TIME = 0.02928932188
 TUMOR_HISTORY = []
 
 def create_grid(rows, cols):
     grid = [[1 for _ in range(cols)] for _ in range(rows)]
+    for row in range(rows):
+        if row < random.randint(0,8):
+            for col in range(cols):
+                grid[row][col] = 0
+                grid[row * -1][col * -1] = 0
+
+        else:
+            for col in range(cols):
+                if col < random.randint(0,8):
+                    grid[row][col] = 0
+                    grid[row * -1][col* -1] = 0
     return grid
 
 def copy_grid(grid):

@@ -19,7 +19,7 @@ def gui_window(screen, grid_t, rows, cols):
     for row_idx, row in enumerate(grid_t):
         for col_idx, cell in enumerate(row):
             if cell == 1:
-                grid_surface.set_at((col_idx, row_idx), (222, 49, 99))
+                grid_surface.set_at((col_idx, row_idx), (255, 105, 180))
             elif cell == 2:
                 grid_surface.set_at((col_idx, row_idx), (129, 19, 49))
             elif cell == 0:
@@ -51,7 +51,7 @@ def game_loop(rows, cols, max_steps, N_max, b, c):
         gui_window(screen, grid_t, rows, cols)
         pygame.display.flip()
 
-        clock.tick(30)
+        clock.tick(10)
 
     pygame.quit()
     save_tumor_history(environment.TUMOR_HISTORY)
