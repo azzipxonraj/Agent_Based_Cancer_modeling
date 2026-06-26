@@ -1,7 +1,11 @@
 import random
+from setup import parse_args
+args = parse_args()
+
+
 # Verander dit naar een lever tumor omdat dit meer logisch is met de normale cellen
-T_GROWTH_CHANCE = 0.003342937006
-C_DOUBLING_TIME = 0.02928932188
+T_GROWTH_CHANCE = args.tgc
+C_DOUBLING_TIME = args.cdt
 TUMOR_HISTORY = []
 
 def create_grid(rows, cols):

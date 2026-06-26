@@ -6,6 +6,7 @@ import math
 
 
 
+
 def write_pdf(fname, figures):
     doc = PdfPages(fname)
     for fig in figures:

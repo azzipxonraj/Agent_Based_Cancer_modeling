@@ -13,8 +13,8 @@ def parse_args():
     parser.add_argument("-t", "--max-steps", type=int, help="maximum number of steps", default=100)
 
     # add in maybe later. depending on what type of cancer.
-    # parser.add_argument("-b", type=int, help=" Initial condition scaling b", default=100)
-    # parser.add_argument("-c", type=int, help="Growth deceleration rate (resource limitation) b", default=100)
+    parser.add_argument("-b", type=int, help=" Initial condition scaling b", default=100)
+    parser.add_argument("-c", type=int, help="Growth deceleration rate (resource limitation) b", default=100)
 
     parser.add_argument("-tgc", "--tumor-growth-chance", type=float, help="the chance per day that the"
                                                                           "tumor will grow in size", default=0.001)
