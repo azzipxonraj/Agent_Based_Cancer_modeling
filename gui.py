@@ -1,4 +1,6 @@
 import pygame
+from pygame import font
+
 import environment
 from output_writer import save_tumor_history
 from analysis import comparing_plots
@@ -34,7 +36,9 @@ def game_loop(rows, cols, max_steps, N_max, b, c):
     grid_t = environment.place_tumor(grid, rows, cols)
     clock = pygame.time.Clock()
 
+
     step_counter = 0
+    day_text = font.render(f"DAY: {step_counter}", True, (255, 255, 255))  # white text
 
     running = True
     while running:
