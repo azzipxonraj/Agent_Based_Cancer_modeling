@@ -12,13 +12,19 @@ def parse_args():
     parser.add_argument("-c", "--cols", type=int, help="number of columns", default=50)
     parser.add_argument("-t", "--max-steps", type=int, help="maximum number of steps", default=100)
 
-    # add in maybe later. depending on what type of cancer.
-    parser.add_argument("-b", type=int, help=" Initial condition scaling b", default=100)
-    parser.add_argument("-c", type=int, help="Growth deceleration rate (resource limitation) b", default=100)
+
+
+    parser.add_argument(
+        "-pc",
+        "--param-c",
+        type=float,
+        help="Tumor growthspeed constant  (c)",
+        default=0.00494,
+    )
 
     parser.add_argument("-tgc", "--tumor-growth-chance", type=float, help="the chance per day that the"
-                                                                          "tumor will grow in size", default=0.001)
-    parser.add_argument("-cdt", "--c-doubling-time", type=float, help="the chance per day that the")
+                                                                          "tumor will grow in size", default=0.00494)
+    parser.add_argument("-cdt", "--c-doubling-time", type=float, help="the chance per day that the",default=0.2929)
 
     args = parser.parse_args()
 

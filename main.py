@@ -9,7 +9,7 @@ N_max = args.rows * args.cols
 
 
 def main():
-    game_loop(args.rows, args.cols, args.max_steps, N_max, args.b, args.c)
+    game_loop(args.rows, args.cols, args.max_steps, N_max, args.param_c)
 
 
 if __name__ == '__main__':

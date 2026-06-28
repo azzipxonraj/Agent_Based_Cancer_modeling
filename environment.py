@@ -4,8 +4,8 @@ args = parse_args()
 
 
 # Verander dit naar een lever tumor omdat dit meer logisch is met de normale cellen
-T_GROWTH_CHANCE = args.tgc
-C_DOUBLING_TIME = args.cdt
+T_GROWTH_CHANCE = args.tumor_growth_chance
+C_DOUBLING_TIME = args.c_doubling_time
 TUMOR_HISTORY = []
 
 def create_grid(rows, cols):

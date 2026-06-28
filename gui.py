@@ -30,7 +30,7 @@ def gui_window(screen, grid_t, rows, cols):
     frame = pygame.transform.scale(grid_surface, (500, 500))
     screen.blit(frame, frame.get_rect(center=(250, 250)))
 
-def game_loop(rows, cols, max_steps, N_max, b, c):
+def game_loop(rows, cols, max_steps, N_max, c):
     screen = init_gui()
     grid = environment.create_grid(rows, cols)
     grid_t = environment.place_tumor(grid, rows, cols)
@@ -38,7 +38,7 @@ def game_loop(rows, cols, max_steps, N_max, b, c):
 
 
     step_counter = 0
-    day_text = font.render(f"DAY: {step_counter}", True, (255, 255, 255))  # white text
+    # day_text = font.render(f"DAY: {step_counter}", True, (255, 255, 255))  # white text
 
     running = True
     while running:
@@ -59,4 +59,4 @@ def game_loop(rows, cols, max_steps, N_max, b, c):
 
     pygame.quit()
     save_tumor_history(environment.TUMOR_HISTORY)
-    comparing_plots(N_max, b, c, max_steps)
+    comparing_plots(N_max, c, max_steps)
