@@ -33,7 +33,7 @@ def gompertz(max_steps, N_max, c):
             # De formule: dV/dt = a * V * ln(Vmax / (V))
             dVdt = c * current_V * math.log(N_max / current_V)
 
-        # Euler integratie: tel de groei van deze dag op bij het huidige volume
+        # Euler integratie: count the growth of each day adding to current volume
         current_V = current_V + dVdt
         volumes.append(current_V)
 
