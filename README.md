@@ -53,25 +53,21 @@ margins.
 #### Tumor Proliferation (`T_GROWTH_CHANCE`) - Default value
 Calibrated to clinical **Hepatocellular Carcinoma (HCC)** volume doubling time (VDT ≈ 140 days)^[Nathani et al., *Gut*, 2021]:
 
-$$
-(1 - P)^{140} = 0.5 \implies P = 1 - 0.5^{1/140} \approx 0.00494 \quad (0.494\%/\text{day})
-$$
+$$(1 - P)^{140} = 0.5 \implies P = 1 - 0.5^{1/140} \approx 0.00494 \quad (0.494\%/\text{day})$$
 
 
 
 #### Healthy Tissue Proliferation (`C_DOUBLING_TIME`) - Default value
 Based on **human hepatocyte kinetics** (doubling time ≈ 48 hours)^[Levy et al., *Nat Biotechnol*, 2015]:
-$$
-(1 - P)^2 = 0.5 \implies P \approx 0.2929
-$$
+
+$$(1 - P)^2 = 0.5 \implies P \approx 0.2929$$
 
 
 ###  Gompertz Growth Model Verification
 
 To validate emergent macro-dynamics, tumor volume $N(t)$ is compared against the classical Gompertz model:
-$$
-\frac{dV}{dt} = c * V * ln(\frac{V_{max}}{V})
-$$
+
+$$\frac{dV}{dt} = c * V * ln(\frac{V_{max}}{V})$$
 
 $c =$ the specific growth rate per t
 
